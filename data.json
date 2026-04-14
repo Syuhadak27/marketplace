@@ -27,7 +27,7 @@
     },
     {
       "id":15,
-      "name": "Lampu LED 5w 15w 20w Hemat Energi",
+      "name": "Lampu LED 5w Hemat Energi",
       "category": "Lampu & Pencahayaan",
       "price": 7500,
       "oldPrice": 10000,
@@ -43,7 +43,7 @@
     },
     {
       "id": 1776142917585,
-      "name": "Led 10",
+      "name": "Led 10w Hemat Energi",
       "category": "Lampu & Pencahayaan",
       "price": 8500,
       "oldPrice": 12500,
@@ -61,7 +61,7 @@
     },
     {
       "id": 1776143009792,
-      "name": "Led 15w",
+      "name": "Led 15w Hemat Energi",
       "category": "Lampu & Pencahayaan",
       "price": 9500,
       "oldPrice": 15000,
@@ -81,7 +81,7 @@
     },
     {
       "id": 1776143058794,
-      "name": "led 20w",
+      "name": "led 20w Hemat Energi",
       "category": "Lampu & Pencahayaan",
       "price": 10000,
       "oldPrice": 17500,
