@@ -1,0 +1,314 @@
+{
+  "categories": [
+    "Semua",
+    "Lampu & Pencahayaan",
+    "Kipas & Pendingin",
+    "Televisi & Audio",
+    "Peralatan Rumah Tangga",
+    "Kabel & Aksesoris",
+    "Lainnya"
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Lampu LED 12W Hemat Energi",
+      "category": "Lampu & Pencahayaan",
+      "price": 22000,
+      "oldPrice": 30000,
+      "images": [
+        "https://www.parto.id/asset/foto_produk/lampu_philips_12_watt_jpg_173094210252.jpg",
+        "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600&h=600&fit=crop"
+      ],
+      "description": "Lampu LED terang dan tahan lama.",
+      "stock": 50,
+      "brand": "Philips",
+      "variants": ["Putih", "Warm White"],
+      "tags": ["hemat-listrik"]
+    },
+    {
+      "id":15,
+      "name": "Lampu LED 5w 15w 20w Hemat Energi",
+      "category": "Lampu & Pencahayaan",
+      "price": 7500,
+      "oldPrice": 10000,
+      "images": [
+        "produk/obj5.jpg",
+        "produk/objall.jpg"
+      ],
+      "description": "Lampu LED terang dan tahan lama.",
+      "stock": 50,
+      "brand": "obaja",
+      "variants": ["5w"],
+      "tags": ["hemat-listrik"]
+    },
+    {
+      "id": 1776142917585,
+      "name": "Led 10",
+      "category": "Lampu & Pencahayaan",
+      "price": 8500,
+      "oldPrice": 12500,
+      "images": [
+        "produk/obj10.jpg",
+        "produk/objall.jpg"
+      ],
+      "description": "",
+      "stock": 50,
+      "brand": "obaja",
+      "variants": [
+        "putih"
+      ],
+      "tags": []
+    },
+    {
+      "id": 1776143009792,
+      "name": "Led 15w",
+      "category": "Lampu & Pencahayaan",
+      "price": 9500,
+      "oldPrice": 15000,
+      "images": [
+        "produk/obj15.jpg",
+        "produk/objall.jpg"
+      ],
+      "description": "",
+      "stock": 0,
+      "brand": "obaja",
+      "variants": [
+        "putih"
+      ],
+      "tags": [
+        "best-seller"
+      ]
+    },
+    {
+      "id": 1776143058794,
+      "name": "led 20w",
+      "category": "Lampu & Pencahayaan",
+      "price": 10000,
+      "oldPrice": 17500,
+      "images": [
+        "produk/obj20.jpg",
+        "produk/objall.jpg"
+      ],
+      "description": "",
+      "stock": 0,
+      "brand": "obaja",
+      "variants": [
+        "putih"
+      ],
+      "tags": [
+        "hemat"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Kipas Angin Meja Portable",
+      "category": "Kipas & Pendingin",
+      "price": 75000,
+      "oldPrice": 99000,
+      "images": [
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1615873968403-89e068629265?w=600&h=600&fit=crop"
+      ],
+      "description": "Kipas angin praktis dan hemat listrik.",
+      "stock": 30,
+      "brand": "Maspion",
+      "variants": ["Hitam", "Putih"],
+      "tags": ["portable"]
+    },
+    {
+      "id": 3,
+      "name": "Smart TV 32 Inch HD",
+      "category": "Televisi & Audio",
+      "price": 1850000,
+      "oldPrice": 2100000,
+      "images": [
+        "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&h=600&fit=crop"
+      ],
+      "description": "Smart TV dengan fitur streaming.",
+      "stock": 15,
+      "brand": "Polytron",
+      "variants": ["32 Inch"],
+      "tags": ["smart-tv"]
+    },
+    {
+      "id": 4,
+      "name": "Blender Multifungsi",
+      "category": "Peralatan Rumah Tangga",
+      "price": 125000,
+      "oldPrice": 160000,
+      "images": [
+        "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=600&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1590080877777-95c5c5d4d8b9?w=600&h=600&fit=crop"
+      ],
+      "description": "Blender serbaguna untuk dapur.",
+      "stock": 25,
+      "brand": "Miyako",
+      "variants": ["1.5L"],
+      "tags": ["dapur"]
+    },
+    {
+      "id": 5,
+      "name": "Kabel Charger Fast Charging",
+      "category": "Kabel & Aksesoris",
+      "price": 18000,
+      "oldPrice": 25000,
+      "images": [
+        "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=600&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1615529162924-f8605388461d?w=600&h=600&fit=crop"
+      ],
+      "description": "Kabel charger cepat dan awet.",
+      "stock": 100,
+      "brand": "Vivan",
+      "variants": ["Type-C", "Lightning"],
+      "tags": ["fast"]
+    },
+
+    {
+      "id": 6,
+      "name": "Lampu Hias Gantung",
+      "category": "Lampu & Pencahayaan",
+      "price": 95000,
+      "oldPrice": 130000,
+      "images": [
+        "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=600&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&h=600&fit=crop"
+      ],
+      "description": "Lampu dekorasi ruangan estetik.",
+      "stock": 20,
+      "brand": "Krisbow",
+      "variants": ["Hitam", "Emas"],
+      "tags": ["dekorasi"]
+    },
+    {
+      "id": 7,
+      "name": "Air Cooler Mini",
+      "category": "Kipas & Pendingin",
+      "price": 150000,
+      "oldPrice": 199000,
+      "images": [
+        "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=600&h=600&fit=crop"
+      ],
+      "description": "Pendingin ruangan mini.",
+      "stock": 18,
+      "brand": "Cosmos",
+      "variants": ["Putih"],
+      "tags": ["cooler"]
+    },
+    {
+      "id": 8,
+      "name": "Speaker Bluetooth Portable",
+      "category": "Televisi & Audio",
+      "price": 85000,
+      "oldPrice": 120000,
+      "images": [
+        "https://images.unsplash.com/photo-1589003077984-894e133dabab?w=600&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=600&h=600&fit=crop"
+      ],
+      "description": "Speaker bluetooth suara jernih.",
+      "stock": 40,
+      "brand": "Advance",
+      "variants": ["Hitam", "Merah"],
+      "tags": ["bluetooth"]
+    },
+    {
+      "id": 9,
+      "name": "Rice Cooker Mini",
+      "category": "Peralatan Rumah Tangga",
+      "price": 175000,
+      "oldPrice": 220000,
+      "images": [
+        "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=600&h=600&fit=crop"
+      ],
+      "description": "Rice cooker praktis.",
+      "stock": 22,
+      "brand": "Maspion",
+      "variants": ["1L"],
+      "tags": ["rice-cooker"]
+    },
+    {
+      "id": 10,
+      "name": "Stop Kontak 3 Lubang",
+      "category": "Kabel & Aksesoris",
+      "price": 27000,
+      "oldPrice": 35000,
+      "images": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO0jM3bcZhUVPl6wYdcCfG_z_YHXxT4wXuw9o4tgAHMSzfw_RZkQuzCOU&s=10",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO0jM3bcZhUVPl6wYdcCfG_z_YHXxT4wXuw9o4tgAHMSzfw_RZkQuzCOU&s=10"
+      ],
+      "description": "Stop kontak aman.",
+      "stock": 60,
+      "brand": "Broco",
+      "variants": ["3 Lubang"],
+      "tags": ["listrik"]
+    },
+
+    {
+      "id": 11,
+      "name": "Setrika Listrik",
+      "category": "Peralatan Rumah Tangga",
+      "price": 99000,
+      "oldPrice": 130000,
+      "images": [
+        "https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?w=600&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?w=600&h=600&fit=crop"
+      ],
+      "description": "Setrika cepat panas.",
+      "stock": 35,
+      "brand": "Philips",
+      "variants": ["Standar"],
+      "tags": ["setrika"]
+    },
+    {
+      "id": 12,
+      "name": "Lampu Tidur Sensor",
+      "category": "Lampu & Pencahayaan",
+      "price": 35000,
+      "oldPrice": 50000,
+      "images": [
+        "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=600&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=600&h=600&fit=crop"
+      ],
+      "description": "Lampu otomatis saat gelap.",
+      "stock": 40,
+      "brand": "Hannochs",
+      "variants": ["Putih"],
+      "tags": ["lampu"]
+    },
+    {
+      "id": 13,
+      "name": "Headphone Wireless",
+      "category": "Televisi & Audio",
+      "price": 125000,
+      "oldPrice": 180000,
+      "images": [
+        "https://blezacomputer.com/wp-content/uploads/2021/07/2f72b9e6f2be87dc64943c8c49818873-600x600.jpg",
+        "https://images.unsplash.com/photo-1580894908361-967195033215?w=600&h=600&fit=crop"
+      ],
+      "description": "Headphone nyaman.",
+      "stock": 28,
+      "brand": "Robot",
+      "variants": ["Hitam"],
+      "tags": ["audio"]
+    },
+
+    {
+      "id": 15,
+      "name": "Adaptor USB Multi Port",
+      "category": "Kabel & Aksesoris",
+      "price": 45000,
+      "oldPrice": 65000,
+      "images": [
+        "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=600&h=600&fit=crop"
+      ],
+      "description": "Adaptor banyak port.",
+      "stock": 55,
+      "brand": "Vivan",
+      "variants": ["4 Port", "6 Port"],
+      "tags": ["charger"]
+    }
+  ]
+}

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elektronik Pro - Katalog Produk</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .modal-active { overflow: hidden; }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-blue-600 flex items-center gap-2">
+                <i class="fas fa-bolt"></i> syd<span class="text-slate-700">Shoop</span>
+            </h1>
+            <div class="flex items-center gap-4">
+                <button onclick="toggleView('wishlist')" class="relative p-2 text-slate-600 hover:text-red-500 transition">
+                    <i class="far fa-heart text-xl"></i>
+                    <span id="wishlist-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold px-1.5 rounded-full hidden">0</span>
+                </button>
+                <button onclick="toggleView('cart')" class="relative p-2 text-slate-600 hover:text-blue-600 transition">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-blue-600 text-white text-[10px] font-bold px-1.5 rounded-full hidden">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="mt-20 px-4 py-8">
+        <div class="container mx-auto bg-blue-600 rounded-3xl p-8 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl shadow-blue-200">
+            <div class="max-w-md">
+                <span class="bg-blue-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Promo Elektronik</span>
+                <h2 class="text-3xl font-extrabold mt-4 mb-2 leading-tight">Lengkapi Kebutuhan Listrik Rumah Anda</h2>
+                <p class="text-blue-100 mb-6">Produk berkualitas, harga bersahabat, dan pengiriman kilat ke seluruh Indonesia.</p>
+                <a href="#katalog" class="bg-white text-blue-600 px-6 py-3 rounded-xl font-bold shadow-lg hover:bg-blue-50 transition inline-block">Mulai Belanja</a>
+            </div>
+            <div class="hidden md:block w-48 opacity-80">
+                <i class="fas fa-plug text-[150px]"></i>
+            </div>
+        </div>
+    </section>
+
+    <section id="katalog" class="container mx-auto px-4 py-6">
+        <div class="flex flex-col md:flex-row gap-4 mb-8">
+            <div class="relative flex-grow">
+                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="search-input" placeholder="Cari lampu, kabel, atau brand..." 
+                    class="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition shadow-sm">
+            </div>
+            <select id="sort-select" class="bg-white border border-slate-200 rounded-2xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="newest">Terbaru</option>
+                <option value="price-low">Harga Terendah</option>
+                <option value="price-high">Harga Tertinggi</option>
+            </select>
+        </div>
+
+        <div id="category-list" class="flex gap-2 overflow-x-auto hide-scrollbar mb-8 pb-2">
+            </div>
+
+        <div id="product-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <div class="animate-pulse bg-white p-4 rounded-3xl h-64 shadow-sm border border-slate-100"></div>
+            <div class="animate-pulse bg-white p-4 rounded-3xl h-64 shadow-sm border border-slate-100"></div>
+            <div class="animate-pulse bg-white p-4 rounded-3xl h-64 shadow-sm border border-slate-100"></div>
+            <div class="animate-pulse bg-white p-4 rounded-3xl h-64 shadow-sm border border-slate-100"></div>
+        </div>
+
+        <div id="empty-state" class="hidden text-center py-20">
+            <i class="fas fa-search text-6xl text-slate-200 mb-4"></i>
+            <p class="text-slate-500">Produk tidak ditemukan...</p>
+        </div>
+    </section>
+
+    <div id="modal-detail" class="fixed inset-0 bg-black/60 z-[60] hidden backdrop-blur-sm p-4 overflow-y-auto">
+        <div class="bg-white max-w-2xl mx-auto rounded-3xl overflow-hidden mt-10 mb-10 shadow-2xl relative">
+            <button onclick="closeModal('modal-detail')" class="absolute top-4 right-4 z-10 bg-white/80 w-10 h-10 rounded-full flex items-center justify-center shadow-md">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="modal-content" class="flex flex-col md:flex-row">
+                </div>
+        </div>
+    </div>
+
+    <div id="side-view" class="fixed inset-0 z-[70] hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeSideView()"></div>
+        <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col">
+            <div class="p-6 border-b flex justify-between items-center">
+                <h3 id="side-view-title" class="text-xl font-bold text-slate-800">Keranjang</h3>
+                <button onclick="closeSideView()" class="text-slate-400 hover:text-slate-800 text-2xl">&times;</button>
+            </div>
+            <div id="side-view-content" class="flex-grow overflow-y-auto p-6">
+                </div>
+            <div id="side-view-footer" class="p-6 border-t bg-slate-50">
+                </div>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white px-6 py-3 rounded-full shadow-xl opacity-0 transition-all duration-300 pointer-events-none z-[100]">
+        Item berhasil ditambahkan!
+    </div>
+
+    <script>
+        // CONFIG & STATE
+        const CONFIG = {
+            shopName: "syd SHOOP",
+            whatsapp: "6282333180072", // Ganti dengan nomor WA Anda
+            currency: "IDR"
+        };
+
+        let allProducts = [];
+        let categories = [];
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        let currentFilter = "Semua";
+
+        // INIT DATA
+        async function init() {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                allProducts = data.products;
+                categories = data.categories;
+                
+                renderCategories();
+                renderProducts(allProducts);
+                updateBadges();
+            } catch (error) {
+                console.error("Gagal load data:", error);
+                document.getElementById('product-grid').innerHTML = `<p class='col-span-full text-center text-red-500 py-10'>Gagal memuat produk. Pastikan data.json tersedia.</p>`;
+            }
+        }
+
+        // RENDERERS
+        function renderCategories() {
+            const container = document.getElementById('category-list');
+            container.innerHTML = categories.map(cat => `
+                <button onclick="filterByCategory('${cat}')" 
+                    class="category-chip px-5 py-2 rounded-full border border-slate-200 whitespace-nowrap transition
+                    ${currentFilter === cat ? 'bg-blue-600 border-blue-600 text-white' : 'bg-white text-slate-600 hover:border-blue-300'}">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        function renderProducts(products) {
+            const grid = document.getElementById('product-grid');
+            const empty = document.getElementById('empty-state');
+            
+            if (products.length === 0) {
+                grid.classList.add('hidden');
+                empty.classList.remove('hidden');
+                return;
+            }
+
+            grid.classList.remove('hidden');
+            empty.classList.add('hidden');
+
+            grid.innerHTML = products.map(p => {
+                const isWishlisted = wishlist.includes(p.id);
+                const discount = p.oldPrice ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
+                
+                return `
+                    <div class="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden">
+                        <div class="relative aspect-square overflow-hidden bg-slate-100">
+                            <img src="${p.images[0]}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                                onerror="this.src='https://via.placeholder.com/300?text=Produk'">
+                            <button onclick="toggleWishlist(${p.id}, event)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur shadow-sm flex items-center justify-center transition hover:bg-white">
+                                <i class="${isWishlisted ? 'fas' : 'far'} fa-heart text-red-500"></i>
+                            </button>
+                            ${discount > 0 ? `<span class="absolute top-3 left-3 bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-lg">-${discount}%</span>` : ''}
+                        </div>
+                        <div class="p-4 cursor-pointer" onclick="openDetail(${p.id})">
+                            <p class="text-[10px] font-bold text-blue-500 uppercase tracking-tighter mb-1">${p.brand}</p>
+                            <h3 class="font-semibold text-slate-800 line-clamp-2 leading-tight mb-2 h-10">${p.name}</h3>
+                            <div class="flex flex-col">
+                                <span class="text-blue-600 font-bold">Rp ${p.price.toLocaleString()}</span>
+                                ${p.oldPrice ? `<span class="text-[10px] text-slate-400 line-through">Rp ${p.oldPrice.toLocaleString()}</span>` : ''}
+                            </div>
+                            <button onclick="addToCart(${p.id}, event)" class="w-full mt-4 bg-slate-50 hover:bg-blue-600 hover:text-white text-blue-600 py-2 rounded-xl text-sm font-bold transition-colors">
+                                + Keranjang
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // FILTER & SORTING
+        function filterByCategory(cat) {
+            currentFilter = cat;
+            renderCategories();
+            applyFilters();
+        }
+
+        document.getElementById('search-input').addEventListener('input', applyFilters);
+        document.getElementById('sort-select').addEventListener('change', applyFilters);
+
+        function applyFilters() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const sortBy = document.getElementById('sort-select').value;
+
+            let filtered = allProducts.filter(p => {
+                const matchSearch = p.name.toLowerCase().includes(query) || p.brand.toLowerCase().includes(query);
+                const matchCat = currentFilter === "Semua" || p.category === currentFilter;
+                return matchSearch && matchCat;
+            });
+
+            if (sortBy === 'price-low') filtered.sort((a, b) => a.price - b.price);
+            if (sortBy === 'price-high') filtered.sort((a, b) => b.price - a.price);
+            
+            renderProducts(filtered);
+        }
+
+        // CART & WISHLIST LOGIC
+        function addToCart(id, event) {
+            if (event) event.stopPropagation();
+            const product = allProducts.find(p => p.id === id);
+            const inCart = cart.find(item => item.id === id);
+
+            if (inCart) {
+                inCart.qty += 1;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+            
+            saveAndUpdate();
+            showToast("Berhasil ditambah ke keranjang!");
+        }
+
+        function toggleWishlist(id, event) {
+            if (event) event.stopPropagation();
+            const index = wishlist.indexOf(id);
+            if (index > -1) {
+                wishlist.splice(index, 1);
+                showToast("Dihapus dari wishlist");
+            } else {
+                wishlist.push(id);
+                showToast("Ditambah ke wishlist!");
+            }
+            saveAndUpdate();
+            applyFilters(); // Re-render for icon update
+        }
+
+        function saveAndUpdate() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            updateBadges();
+        }
+
+        function updateBadges() {
+            const cCount = document.getElementById('cart-count');
+            const wCount = document.getElementById('wishlist-count');
+            
+            const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
+            
+            if (totalItems > 0) {
+                cCount.textContent = totalItems;
+                cCount.classList.remove('hidden');
+            } else cCount.classList.add('hidden');
+
+            if (wishlist.length > 0) {
+                wCount.textContent = wishlist.length;
+                wCount.classList.remove('hidden');
+            } else wCount.classList.add('hidden');
+        }
+
+        // VIEW TOGGLE (SIDEBAR)
+        function toggleView(type) {
+            const side = document.getElementById('side-view');
+            const title = document.getElementById('side-view-title');
+            const content = document.getElementById('side-view-content');
+            const footer = document.getElementById('side-view-footer');
+
+            side.classList.remove('hidden');
+            document.body.classList.add('modal-active');
+
+            if (type === 'cart') {
+                title.textContent = "Keranjang";
+                renderCartInSide(content, footer);
+            } else {
+                title.textContent = "Wishlist Favorit";
+                renderWishlistInSide(content, footer);
+            }
+        }
+
+        function renderCartInSide(content, footer) {
+            if (cart.length === 0) {
+                content.innerHTML = `<div class="text-center py-10"><i class="fas fa-shopping-basket text-4xl text-slate-200 mb-4"></i><p>Keranjang masih kosong</p></div>`;
+                footer.innerHTML = "";
+                return;
+            }
+
+            content.innerHTML = cart.map(item => `
+                <div class="flex gap-4 mb-4 pb-4 border-b">
+                    <img src="${item.images[0]}" class="w-16 h-16 rounded-xl object-cover">
+                    <div class="flex-grow">
+                        <h4 class="text-sm font-semibold">${item.name}</h4>
+                        <p class="text-blue-600 font-bold text-xs">Rp ${item.price.toLocaleString()}</p>
+                        <div class="flex items-center gap-3 mt-2">
+                            <button onclick="updateQty(${item.id}, -1)" class="w-6 h-6 border rounded flex items-center justify-center">-</button>
+                            <span class="text-sm">${item.qty}</span>
+                            <button onclick="updateQty(${item.id}, 1)" class="w-6 h-6 border rounded flex items-center justify-center">+</button>
+                        </div>
+                    </div>
+                    <button onclick="removeFromCart(${item.id})" class="text-slate-300 hover:text-red-500"><i class="fas fa-trash"></i></button>
+                </div>
+            `).join('');
+
+            const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+            footer.innerHTML = `
+                <div class="flex justify-between mb-4">
+                    <span class="font-bold text-slate-600">Subtotal</span>
+                    <span class="font-bold text-blue-600 text-lg">Rp ${subtotal.toLocaleString()}</span>
+                </div>
+                <button onclick="sendWA()" class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-2xl font-bold flex items-center justify-center gap-2 transition shadow-lg shadow-green-100">
+                    <i class="fab fa-whatsapp text-xl"></i> Pesan via WhatsApp
+                </button>
+            `;
+        }
+
+        function renderWishlistInSide(content, footer) {
+            const items = allProducts.filter(p => wishlist.includes(p.id));
+            footer.innerHTML = "";
+            
+            if (items.length === 0) {
+                content.innerHTML = `<div class="text-center py-10"><i class="fas fa-heart text-4xl text-slate-200 mb-4"></i><p>Belum ada wishlist</p></div>`;
+                return;
+            }
+
+            content.innerHTML = items.map(item => `
+                <div class="flex gap-4 mb-4 pb-4 border-b items-center">
+                    <img src="${item.images[0]}" class="w-16 h-16 rounded-xl object-cover cursor-pointer" onclick="openDetail(${item.id})">
+                    <div class="flex-grow">
+                        <h4 class="text-sm font-semibold">${item.name}</h4>
+                        <p class="text-blue-600 font-bold text-xs">Rp ${item.price.toLocaleString()}</p>
+                    </div>
+                    <button onclick="addToCart(${item.id})" class="text-blue-500 hover:text-blue-700 p-2"><i class="fas fa-plus-circle"></i></button>
+                    <button onclick="toggleWishlist(${item.id})" class="text-red-400 p-2"><i class="fas fa-trash"></i></button>
+                </div>
+            `).join('');
+        }
+
+        function updateQty(id, change) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.qty += change;
+                if (item.qty <= 0) removeFromCart(id);
+                saveAndUpdate();
+                toggleView('cart');
+            }
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(i => i.id !== id);
+            saveAndUpdate();
+            toggleView('cart');
+        }
+
+        function closeSideView() {
+            document.getElementById('side-view').classList.add('hidden');
+            document.body.classList.remove('modal-active');
+        }
+
+        // WHATSAPP GENERATOR
+        function sendWA() {
+            if (cart.length === 0) return;
+            
+            let message = `Halo, saya mau pesan di *${CONFIG.shopName}*:\n\n`;
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const sub = item.price * item.qty;
+                message += `${index + 1}. *${item.name}*\n   ${item.qty} x Rp ${item.price.toLocaleString()} = Rp ${sub.toLocaleString()}\n`;
+                total += sub;
+            });
+
+            message += `\n*Total: Rp ${total.toLocaleString()}*\n\nMohon bantuannya untuk proses selanjutnya. Terima kasih.`;
+            
+            const encodedMsg = encodeURIComponent(message);
+            window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodedMsg}`, '_blank');
+        }
+
+        // DETAIL MODAL
+        function openDetail(id) {
+            const p = allProducts.find(item => item.id === id);
+            const modal = document.getElementById('modal-detail');
+            const content = document.getElementById('modal-content');
+
+            content.innerHTML = `
+                <div class="md:w-1/2 p-2">
+                    <div class="h-80 w-full overflow-hidden rounded-2xl bg-slate-50">
+                        <img src="${p.images[0]}" id="main-detail-img" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex gap-2 mt-4 overflow-x-auto pb-2">
+                        ${p.images.map(img => `
+                            <img src="${img}" class="w-20 h-20 rounded-lg object-cover cursor-pointer border-2 border-transparent hover:border-blue-500 transition"
+                                onclick="document.getElementById('main-detail-img').src='${img}'">
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="md:w-1/2 p-6 md:p-8">
+                    <span class="text-blue-600 font-bold text-sm uppercase">${p.brand}</span>
+                    <h2 class="text-2xl font-bold text-slate-800 mt-1 mb-4 leading-tight">${p.name}</h2>
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-3xl font-extrabold text-blue-600">Rp ${p.price.toLocaleString()}</span>
+                        ${p.oldPrice ? `<span class="text-slate-400 line-through">Rp ${p.oldPrice.toLocaleString()}</span>` : ''}
+                    </div>
+                    <div class="mb-6">
+                        <h4 class="font-bold text-slate-700 mb-2">Deskripsi</h4>
+                        <p class="text-slate-500 text-sm leading-relaxed">${p.description}</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button onclick="addToCart(${p.id}); closeModal('modal-detail')" class="bg-blue-600 text-white font-bold py-4 rounded-2xl hover:bg-blue-700 transition">
+                            + Keranjang
+                        </button>
+                        <button onclick="directWA(${p.id})" class="bg-green-500 text-white font-bold py-4 rounded-2xl hover:bg-green-600 transition flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp"></i> Beli Langsung
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            document.body.classList.add('modal-active');
+        }
+
+        function directWA(id) {
+            const p = allProducts.find(item => item.id === id);
+            const msg = encodeURIComponent(`Halo, saya tertarik dengan produk: *${p.name}* (Rp ${p.price.toLocaleString()}). Apakah stok masih ada?`);
+            window.open(`https://wa.me/${CONFIG.whatsapp}?text=${msg}`, '_blank');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.body.classList.remove('modal-active');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.remove('opacity-0', 'translate-y-5');
+            toast.classList.add('opacity-100', '-translate-y-0');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-5');
+                toast.classList.remove('opacity-100', '-translate-y-0');
+            }, 2000);
+        }
+
+        // Run Init
+        init();
+    </script>
+</body>
+</html>
